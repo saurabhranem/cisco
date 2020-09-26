@@ -1,0 +1,48 @@
+Trouble-shooting steps to check load or performance of server
+
+
+1). Top command
+
+Linux ‘top’ command is a performance monitoring program which can check server load. where we will we get o know all disk and memeory statistics of infrastructure including apps and processes
+	
+	top –i
+	
+	This hides all the idle processes, making it easier to sort through the list.
+
+	To quit the top function, press the letter q on your keyboard.
+
+	Some other useful commands while top is running include:
+
+	M – sort task list by memory usage
+	P – sort task list by processor usage
+	N – sort task list by process ID
+	T – sort task list by run time
+	
+2) 
+Step1 - Vmstat
+
+memory in a server is one major constraining factor. There is an area called swap area where hard drive data is moved to free up physical memory (RAM) for a process to use (not all servers have swap space configured). A system utilizing its swap area does not have to be low on memory, but if most of your system’s swap is being used it could mean that your server is trying to do more than the memory permits.
+
+If swap space is configured and you suspect your server is running out of standard memory, you can use command ‘stat’ to check how much swapping is happening.
+
+
+Step2 - sar Command to Show CPU Utilization
+
+The sar tool is a utility for managing system resources. It’s not limited strictly to CPU usage, but you can use the -u option to track CPU performance.
+Use the following command to direct sar to monitor CPU usage at set intervals:
+
+sar –u 5
+The –u option tells it to display CPU usage. The 5 indicates that it should display every 5 seconds. This will run indefinitely. To cancel, press Ctrl-C.
+
+Step3-  iostat Command for Average Usage
+In a terminal, enter the following:
+iostat
+
+The system will display average CPU usage since the last boot. It will also display input/output load (disk read/write activity).
+
+
+3) Killing Zombie and Sleeping Processes in that order can also help in reducing slowness of server
+
+	apt-get install iotop 
+	run iotop command
+	and you can see the heavy hitters on the disk i/o.
